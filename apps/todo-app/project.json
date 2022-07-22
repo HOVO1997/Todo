@@ -5,7 +5,9 @@
   "targets": {
     "build": {
       "executor": "@angular-devkit/build-angular:browser",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "outputPath": "dist/apps/todo-app",
         "index": "apps/todo-app/src/index.html",
@@ -13,8 +15,14 @@
         "polyfills": "apps/todo-app/src/polyfills.ts",
         "tsConfig": "apps/todo-app/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
-        "assets": ["apps/todo-app/src/favicon.ico", "apps/todo-app/src/assets"],
-        "styles": ["apps/todo-app/src/styles.scss"],
+        "assets": [
+          "apps/todo-app/src/favicon.ico",
+          "apps/todo-app/src/assets"
+        ],
+        "styles": [
+          "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
+          "apps/todo-app/src/styles.scss"
+        ],
         "scripts": []
       },
       "configurations": {
@@ -71,12 +79,17 @@
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "options": {
-        "lintFilePatterns": ["apps/todo-app/**/*.ts", "apps/todo-app/**/*.html"]
+        "lintFilePatterns": [
+          "apps/todo-app/**/*.ts",
+          "apps/todo-app/**/*.html"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/todo-app"],
+      "outputs": [
+        "coverage/apps/todo-app"
+      ],
       "options": {
         "jestConfig": "apps/todo-app/jest.config.ts",
         "passWithNoTests": true

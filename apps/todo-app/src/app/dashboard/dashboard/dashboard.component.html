@@ -1,0 +1,97 @@
+<section class="container" cdkDropListGroup>
+  <div class="btn-block">
+    <button mat-raised-button color="accent" (click)="openDialog()">Create Ticket</button>
+  </div>
+  <form class="board-section" [formGroup]="ticketFormGroup">
+    <div class="column-container">
+      <p class="column-label">ToDo</p>
+      <div class="column-wrapper">
+        <div class="column-form">
+          <mat-form-field class="column-full-width" appearance="fill">
+            <mat-label>TODO</mat-label>
+            <input matInput placeholder="Search in TODO" formControlName="todo">
+          </mat-form-field>
+          <button type="button" mat-button class="ascending" (click)="sortTodo()"><mat-icon>vertical_align_{{todoType}}</mat-icon></button>
+        </div>
+      <div
+        cdkDropList
+        [cdkDropListData]="todo"
+        class="column"
+        (cdkDropListDropped)="drop($event, connectionResult.TODO)">
+        <div class="ticket-block" *ngFor="let item of todo" cdkDrag>
+          <div class="ticket-text-wrapper">
+            <p class="ticket-text">{{item.title}}</p>
+            <p class="ticket-text">{{item.description}}</p>
+          </div>
+          <div class="users-list" *ngIf="item.users.length">
+            <button mat-stroked-button *ngFor="let user of item.users">{{user.name}}</button>
+          </div>
+          <div class="delete">
+            <button type="button" mat-button (click)="delete(item.id)"><mat-icon>delete</mat-icon></button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+    <div class="column-container">
+      <p class="column-label">In Progress</p>
+      <div class="column-wrapper">
+        <form class="column-form">
+          <mat-form-field class="column-full-width" appearance="fill">
+            <mat-label>IN PROGRESS</mat-label>
+            <input matInput placeholder="Search IN PROGRESS" formControlName="in_progress">
+          </mat-form-field>
+          <button type="button" mat-button class="ascending" (click)="sortInProgress()"><mat-icon>vertical_align_{{progressType}}</mat-icon></button>
+        </form>
+        <div
+          cdkDropList
+          [cdkDropListData]="in_progress"
+          class="column"
+          (cdkDropListDropped)="drop($event, connectionResult.IN_PROGRESS)">
+          <div class="ticket-block" *ngFor="let item of in_progress" cdkDrag>
+            <div class="ticket-text-wrapper">
+              <p class="ticket-text">{{item.title}}</p>
+              <p class="ticket-text">{{item.description}}</p>
+            </div>
+            <div class="users-list" *ngIf="item.users.length">
+              <button type="button" mat-stroked-button *ngFor="let user of item.users">{{user.name}}</button>
+            </div>
+            <div class="delete">
+              <button mat-button (click)="delete(item.id)"><mat-icon>delete</mat-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column-container">
+      <p class="column-label">Done</p>
+      <div class="column-wrapper">
+        <form class="column-form">
+          <mat-form-field class="column-full-width" appearance="fill">
+            <mat-label>DONE</mat-label>
+            <input matInput placeholder="Search in DONE" formControlName="done">
+          </mat-form-field>
+          <button type="button" mat-button class="ascending" (click)="sortDone()"><mat-icon>vertical_align_{{doneType}}</mat-icon></button>
+        </form>
+        <div
+          cdkDropList
+          [cdkDropListData]="done"
+          class="column"
+          (cdkDropListDropped)="drop($event, connectionResult.DONE)">
+          <div class="ticket-block" *ngFor="let item of done" cdkDrag>
+            <div class="ticket-text-wrapper">
+              <p class="ticket-text">{{item.title}}</p>
+              <p class="ticket-text">{{item.description}}</p>
+            </div>
+            <div class="users-list" *ngIf="item.users.length">
+              <button type="button" mat-stroked-button *ngFor="let user of item.users">{{user.name}}</button>
+            </div>
+            <div class="delete">
+              <button mat-button (click)="delete(item.id)"><mat-icon>delete</mat-icon></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>

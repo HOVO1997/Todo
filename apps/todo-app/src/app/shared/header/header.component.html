@@ -1,0 +1,15 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+      <div>
+        <h1>ToDo App</h1>
+      </div>
+      <div>
+        <button mat-button [matMenuTriggerFor]="menu">
+          {{ user?.name }}
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="logOut()">Log Out</button>
+        </mat-menu>
+      </div>
+  </mat-toolbar-row>
+</mat-toolbar>
